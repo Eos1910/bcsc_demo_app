@@ -1,0 +1,2283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Splendid Wealth & Continuity Ecosystem</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind Config & Custom CSS -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        neutral: {
+                            850: '#1f1f1f',
+                            900: '#171717',
+                            950: '#0a0a0a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Minimalist Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Electric Monochrome Range Slider */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #fff;
+            cursor: pointer;
+            margin-top: -6px;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+            transition: transform 0.1s;
+        }
+
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #333;
+            border-radius: 2px;
+        }
+
+        input[type=range]:focus {
+            outline: none;
+        }
+
+        /* Smooth View Transitions */
+        .fade-in {
+            animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* High-Voltage Glows */
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .glow-active {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            border-color: #fff !important;
+        }
+
+        /* Toggle Switch Override */
+        .peer:checked~.peer-checked\:bg-white {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body class="antialiased min-h-screen flex flex-col selection:bg-white selection:text-black">
+
+    <!-- Global Top Navigation -->
+    <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-xl border-b border-neutral-800 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-28">
+                <!-- Left: Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer group" onclick="switchTab('tab1')">
+                    <img src="https://dcsagency.com.my/assets/images/partners/SWA_Transparent%20Logo_Black.png"
+                        alt="Splendid Wealth Advisory"
+                        class="h-24 w-auto object-contain invert brightness-0 group-hover:opacity-75 transition-opacity transform scale-110 origin-left" />
+                </div>
+
+                <!-- Center: Security Badge -->
+                <div
+                    class="hidden md:flex items-center border border-neutral-800 rounded-full px-4 py-1.5 shadow-[0_0_10px_rgba(255,255,255,0.05)]">
+                    <i class="fas fa-lock text-neutral-400 text-xs mr-2"></i>
+                    <span class="text-[11px] font-semibold text-neutral-400 tracking-[0.2em] uppercase">Institutional
+                        Portal</span>
+                </div>
+
+                <!-- Right: Nav Buttons -->
+                <div class="flex space-x-2 overflow-x-auto no-scrollbar py-2">
+                    <button onclick="switchTab('tab1')" id="btn-tab1"
+                        class="nav-btn flex items-center px-4 py-2 rounded-md text-sm font-medium text-black bg-white shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all">
+                        <span class="hidden lg:inline">Wealth Planning</span><i class="fas fa-wallet lg:ml-2"></i>
+                    </button>
+                    <button onclick="switchTab('tab2')" id="btn-tab2"
+                        class="nav-btn flex items-center px-4 py-2 rounded-md text-sm font-medium text-neutral-400 hover:text-white transition-all border border-transparent">
+                        <span class="hidden lg:inline">Business Planning</span><i
+                            class="fas fa-building-shield lg:ml-2"></i>
+                    </button>
+                    <button onclick="switchTab('tab3')" id="btn-tab3"
+                        class="nav-btn flex items-center px-4 py-2 rounded-md text-sm font-medium text-neutral-400 hover:text-white transition-all border border-transparent">
+                        <span class="hidden lg:inline">Events</span><i class="fas fa-calendar-check lg:ml-2"></i>
+                    </button>
+                    <button onclick="switchTab('tab4')" id="btn-tab4"
+                        class="nav-btn flex items-center px-4 py-2 rounded-md text-sm font-medium text-neutral-400 hover:text-white transition-all border border-transparent">
+                        <span class="hidden lg:inline">Contact Advisor</span><i class="fas fa-user-shield lg:ml-2"></i>
+                    </button>
+                    <button onclick="switchTab('tab5')" id="btn-tab5"
+                        class="nav-btn flex items-center px-4 py-2 rounded-md text-sm font-medium text-neutral-400 hover:text-white transition-all border border-transparent">
+                        <span class="hidden lg:inline">Profile</span><i class="fas fa-user lg:ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow pt-28 pb-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full">
+
+        <!-- ================= TAB 1: Personal Wealth Suite ================= -->
+        <section id="tab1" class="tab-content fade-in">
+
+            <!-- MASTER VIEW -->
+            <div id="tab1-master" class="fade-in">
+                <div class="mb-10">
+                    <h1 class="text-4xl font-bold text-white tracking-tight mb-3">Wealth Planning</h1>
+                    <p class="text-neutral-400 font-light text-lg">Select a diagnostic tool to begin your financial
+                        blueprint.</p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4">
+                    <!-- Master Item 1 -->
+                    <div onclick="openDetail('tab1', 'tab1-detail-epf')"
+                        class="group bg-neutral-900 border border-neutral-800 p-6 flex items-center justify-between cursor-pointer glow-hover transition-all rounded-lg">
+                        <div class="flex items-center">
+                            <div
+                                class="w-12 h-12 rounded border border-neutral-700 flex items-center justify-center mr-5 group-hover:bg-white group-hover:text-black transition-colors">
+                                <i class="fas fa-chart-line text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-xl font-semibold text-white mb-1">Advanced EPF & Retirement Planner</h2>
+                                <p class="text-sm text-neutral-400 font-light">Project statutory wealth trajectory with
+                                    real-time inflation discounting.</p>
+                            </div>
+                        </div>
+                        <i
+                            class="fas fa-arrow-right text-neutral-600 group-hover:text-white transition-colors group-hover:translate-x-1 transform duration-300"></i>
+                    </div>
+
+                    <!-- Master Item 2 -->
+                    <div onclick="openDetail('tab1', 'tab1-detail-mortgage')"
+                        class="group bg-neutral-900 border border-neutral-800 p-6 flex items-center justify-between cursor-pointer glow-hover transition-all rounded-lg">
+                        <div class="flex items-center">
+                            <div
+                                class="w-12 h-12 rounded border border-neutral-700 flex items-center justify-center mr-5 group-hover:bg-white group-hover:text-black transition-colors">
+                                <i class="fas fa-house-crack text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-xl font-semibold text-white mb-1">Dynamic Mortgage Stress-Tester</h2>
+                                <p class="text-sm text-neutral-400 font-light">Analyze exact macroeconomic interest rate
+                                    shock impact on lifetime borrowing costs.</p>
+                            </div>
+                        </div>
+                        <i
+                            class="fas fa-arrow-right text-neutral-600 group-hover:text-white transition-colors group-hover:translate-x-1 transform duration-300"></i>
+                    </div>
+
+                    <!-- Master Item 3 -->
+                    <div onclick="openDetail('tab1', 'tab1-detail-education')"
+                        class="group bg-neutral-900 border border-neutral-800 p-6 flex items-center justify-between cursor-pointer glow-hover transition-all rounded-lg">
+                        <div class="flex items-center">
+                            <div
+                                class="w-12 h-12 rounded border border-neutral-700 flex items-center justify-center mr-5 group-hover:bg-white group-hover:text-black transition-colors">
+                                <i class="fas fa-graduation-cap text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-xl font-semibold text-white mb-1">Education & Wealth Accumulator</h2>
+                                <p class="text-sm text-neutral-400 font-light">Calculate required monthly deposits to
+                                    hit milestone targets within your investment horizon.</p>
+                            </div>
+                        </div>
+                        <i
+                            class="fas fa-arrow-right text-neutral-600 group-hover:text-white transition-colors group-hover:translate-x-1 transform duration-300"></i>
+                    </div>
+
+                    <!-- Master Item 4 -->
+                    <div onclick="openDetail('tab1', 'tab1-detail-sandwich')"
+                        class="group bg-neutral-900 border border-neutral-800 p-6 flex items-center justify-between cursor-pointer glow-hover transition-all rounded-lg">
+                        <div class="flex items-center">
+                            <div
+                                class="w-12 h-12 rounded border border-neutral-700 flex items-center justify-center mr-5 group-hover:bg-white group-hover:text-black transition-colors">
+                                <i class="fas fa-people-roof text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-xl font-semibold text-white mb-1">Sandwich Generation Liability Gap</h2>
+                                <p class="text-sm text-neutral-400 font-light">Analyze the pressure point of dual
+                                    eldercare and childcare dependencies on monthly cash flow.</p>
+                            </div>
+                        </div>
+                        <i
+                            class="fas fa-arrow-right text-neutral-600 group-hover:text-white transition-colors group-hover:translate-x-1 transform duration-300"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DETAIL VIEW 1: EPF -->
+            <div id="tab1-detail-epf" class="tab1-detail hidden fade-in">
+                <button onclick="closeDetail('tab1')"
+                    class="text-sm text-neutral-400 hover:text-white mb-8 flex items-center transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Menu
+                </button>
+
+                <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Retirement Planning</h2>
+
+                <div class="bg-neutral-900 border border-neutral-800 rounded-lg p-6 lg:p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                        <!-- Inputs -->
+                        <div class="space-y-6 lg:col-span-1">
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <label class="text-neutral-400 uppercase tracking-widest text-[10px]">Current
+                                        Age</label>
+                                    <span id="epf-age-val" class="font-bold text-white">35</span>
+                                </div>
+                                <input type="range" id="epf-age" min="20" max="55" value="35">
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <label class="text-neutral-400 uppercase tracking-widest text-[10px]">Target
+                                        Retirement Age</label>
+                                    <span id="epf-retire-age-val" class="font-bold text-white">60</span>
+                                </div>
+                                <input type="range" id="epf-retire-age" min="50" max="75" value="60">
+                            </div>
+                            <div>
+                                <label class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Current
+                                    Balance (MYR)</label>
+                                <input type="number" id="epf-balance" value="150000"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-all font-mono">
+                            </div>
+                            <div>
+                                <label class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Current
+                                    Monthly Contribution (MYR)</label>
+                                <input type="number" id="epf-monthly" value="1200"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-all font-mono">
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label
+                                        class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Dividend
+                                        Rate (%)</label>
+                                    <input type="number" id="epf-dividend" value="5.5" step="0.1"
+                                        class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-all font-mono">
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Annual
+                                        Increment (%)</label>
+                                    <input type="number" id="epf-increment" value="3.0" step="0.1"
+                                        class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-all font-mono">
+                                </div>
+                            </div>
+
+                            <div class="pt-4 border-t border-neutral-800 flex items-center justify-between">
+                                <span class="text-sm text-neutral-300 font-medium">Adjust for Inflation (3%)</span>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="epf-inflation" class="sr-only peer" onchange="calcEPF()">
+                                    <div
+                                        class="w-11 h-6 bg-neutral-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-black after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-400 peer-checked:after:bg-black after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-white peer-checked:shadow-[0_0_10px_rgba(255,255,255,0.6)]">
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Chart Output -->
+                        <div class="lg:col-span-2 flex flex-col justify-between">
+                            <div class="mb-4">
+                                <p id="epf-final-label"
+                                    class="text-[10px] text-neutral-500 uppercase tracking-widest mb-1">Projected Value
+                                    at Age 60</p>
+                                <div class="text-4xl font-bold text-white tracking-tighter font-mono"
+                                    id="epf-final-value">MYR 0</div>
+                            </div>
+                            <div class="relative h-64 w-full">
+                                <canvas id="epfChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DETAIL VIEW 2: MORTGAGE -->
+            <div id="tab1-detail-mortgage" class="tab1-detail hidden fade-in">
+                <button onclick="closeDetail('tab1')"
+                    class="text-sm text-neutral-400 hover:text-white mb-8 flex items-center transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Menu
+                </button>
+
+                <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Mortgage Stress Test</h2>
+
+                <div class="bg-neutral-900 border border-neutral-800 rounded-lg p-6 lg:p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+                        <!-- Inputs -->
+                        <div class="space-y-6 lg:col-span-4">
+                            <div>
+                                <label
+                                    class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Property
+                                    Value (MYR)</label>
+                                <input type="number" id="mort-property" value="1000000"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-all font-mono">
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <label class="text-neutral-400 uppercase tracking-widest text-[10px]">Downpayment
+                                        (%)</label>
+                                    <span id="mort-down-val" class="font-bold text-white">10%</span>
+                                </div>
+                                <input type="range" id="mort-down" min="0" max="100" value="10">
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <label class="text-neutral-400 uppercase tracking-widest text-[10px]">Loan
+                                        Tenure</label>
+                                    <span id="mort-years-val" class="font-bold text-white">30 Years</span>
+                                </div>
+                                <input type="range" id="mort-years" min="10" max="35" value="30">
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label
+                                        class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Current
+                                        Rate (%)</label>
+                                    <input type="number" step="0.1" id="mort-rate-base" value="4.0"
+                                        class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all font-mono">
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Stressed
+                                        Rate (%)</label>
+                                    <input type="number" step="0.1" id="mort-rate-stress" value="5.5"
+                                        class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all font-mono">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Comparison Output -->
+                        <div class="flex flex-col justify-center lg:col-span-4">
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div class="bg-black border border-neutral-800 rounded p-4">
+                                    <p class="text-[10px] text-neutral-500 uppercase tracking-widest mb-2">Baseline
+                                        Scenario</p>
+                                    <p class="text-2xl font-bold font-mono text-neutral-300" id="mort-base-pmt">0</p>
+                                    <p class="text-xs text-neutral-500 mt-1">/ month</p>
+                                </div>
+                                <div
+                                    class="bg-neutral-800 border border-neutral-600 rounded p-4 shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                                    <p class="text-[10px] text-white uppercase tracking-widest mb-2">Stressed Scenario
+                                    </p>
+                                    <p class="text-2xl font-bold font-mono text-white" id="mort-stress-pmt">0</p>
+                                    <p class="text-xs text-neutral-400 mt-1">/ month</p>
+                                </div>
+                            </div>
+
+                            <div class="border-t border-neutral-800 pt-6">
+                                <div class="mb-4">
+                                    <p
+                                        class="text-[10px] text-neutral-500 uppercase tracking-widest mb-1 flex justify-between">
+                                        <span>Monthly Payment Difference</span>
+                                    </p>
+                                    <p class="text-xl font-bold text-white tracking-tighter font-mono"
+                                        id="mort-diff-pmt">MYR 0</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-neutral-500 uppercase tracking-widest mb-1">Difference in
+                                        Lifetime Interest Paid</p>
+                                    <div class="flex items-baseline">
+                                        <span class="text-neutral-400 mr-2">+</span>
+                                        <span class="text-3xl font-bold text-white tracking-tighter font-mono"
+                                            id="mort-diff">MYR 0</span>
+                                    </div>
+                                    <p class="text-[10px] text-neutral-400 mt-2 font-light leading-relaxed">This exact
+                                        magnitude of wealth extraction is caused by a macroeconomic rate hike.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chart Output -->
+                        <div class="flex flex-col justify-center lg:col-span-4">
+                            <div class="relative h-72 w-full">
+                                <canvas id="mortgageChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DETAIL VIEW 3: EDUCATION & WEALTH ACCUMULATOR -->
+            <div id="tab1-detail-education" class="tab1-detail hidden fade-in">
+                <button onclick="closeDetail('tab1')"
+                    class="text-sm text-neutral-400 hover:text-white mb-8 flex items-center transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Menu
+                </button>
+
+                <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Education Savings</h2>
+
+                <div class="bg-neutral-900 border border-neutral-800 rounded-lg p-6 lg:p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+                        <!-- Inputs -->
+                        <div class="space-y-6 lg:col-span-4">
+                            <div>
+                                <label class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Target
+                                    Savings Goal (MYR)</label>
+                                <input type="number" id="edu-goal" value="250000"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-all font-mono">
+                            </div>
+                            <div>
+                                <label class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Current
+                                    Seed Capital (MYR)</label>
+                                <input type="number" id="edu-seed" value="50000"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-all font-mono">
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label
+                                        class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Annual
+                                        Yield (%)</label>
+                                    <input type="number" step="0.1" id="edu-yield" value="6.0"
+                                        class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all font-mono">
+                                </div>
+                                <div class="flex flex-col justify-end pb-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-[10px] text-neutral-400 uppercase tracking-widest">Education
+                                            Inflation (5%)</span>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" id="edu-inflation" class="sr-only peer"
+                                                onchange="calcEducation()" checked>
+                                            <div
+                                                class="w-9 h-5 bg-neutral-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-black after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-neutral-400 peer-checked:after:bg-black after:border-neutral-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-white peer-checked:shadow-[0_0_10px_rgba(255,255,255,0.6)]">
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <label class="text-neutral-400 uppercase tracking-widest text-[10px]">Investment
+                                        Horizon (Years)</label>
+                                    <span id="edu-years-val" class="font-bold text-white">15 Years</span>
+                                </div>
+                                <input type="range" id="edu-years" min="1" max="30" value="15">
+                            </div>
+                        </div>
+
+                        <!-- Output -->
+                        <div
+                            class="flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-neutral-800 pt-6 lg:pt-0 lg:pl-8 lg:col-span-4">
+                            <div class="mb-6">
+                                <p class="text-[10px] text-neutral-500 uppercase tracking-widest mb-1">True Target
+                                    (Inflation Adjusted)</p>
+                                <div class="text-2xl font-bold text-neutral-300 font-mono" id="edu-true-goal">MYR
+                                    250,000</div>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-white uppercase tracking-widest mb-1">Required Monthly
+                                    Savings</p>
+                                <div class="text-4xl font-extrabold text-white tracking-tighter font-mono shadow-[0_0_20px_rgba(255,255,255,0.1)] inline-block py-2 mb-2"
+                                    id="edu-monthly-output">MYR 0</div>
+                                <p class="text-xs text-neutral-400 font-light" id="edu-yield-text">(Assuming 6.0%
+                                    annualized compounding yield)</p>
+                            </div>
+                            <div class="mt-6 border-t border-neutral-800 pt-6">
+                                <p class="text-xs text-neutral-500 font-light leading-relaxed">
+                                    Starting with seed capital and compounding growth accelerates wealth accumulation,
+                                    significantly lowering the monthly capital obligation required.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Chart Output -->
+                        <div class="flex flex-col justify-center lg:col-span-4">
+                            <div class="relative h-72 w-full">
+                                <canvas id="eduChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DETAIL VIEW 4: SANDWICH GENERATION LIABILITY GAP -->
+            <div id="tab1-detail-sandwich" class="tab1-detail hidden fade-in">
+                <button onclick="closeDetail('tab1')"
+                    class="text-sm text-neutral-400 hover:text-white mb-8 flex items-center transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Menu
+                </button>
+
+                <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Cash Flow Analysis</h2>
+
+                <div class="bg-neutral-900 border border-neutral-800 rounded-lg p-6 lg:p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+                        <!-- Inputs -->
+                        <div class="space-y-6 lg:col-span-4">
+                            <div>
+                                <label class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Monthly
+                                    Household Income (MYR)</label>
+                                <input type="number" id="sandwich-income" value="15000"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-all font-mono">
+                            </div>
+                            <div>
+                                <label class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Elderly
+                                    Care Expenses (MYR)</label>
+                                <input type="number" id="sandwich-elderly" value="3000"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all font-mono">
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Childcare
+                                    Expenses (MYR)</label>
+                                <input type="number" id="sandwich-child" value="4000"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all font-mono">
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Personal &
+                                    Household Expenses (MYR)</label>
+                                <input type="number" id="sandwich-personal" value="5000"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all font-mono">
+                            </div>
+                        </div>
+
+                        <!-- Output -->
+                        <div
+                            class="flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-neutral-800 pt-6 lg:pt-0 lg:pl-8 lg:col-span-4">
+                            <div class="mb-6">
+                                <div class="flex justify-between text-xs mb-2">
+                                    <span class="text-neutral-400 uppercase tracking-widest text-[10px]">Dependency
+                                        Ratio</span>
+                                    <span id="sandwich-ratio-val" class="font-bold text-white font-mono">46%</span>
+                                </div>
+                                <div
+                                    class="w-full bg-neutral-800 rounded-full h-4 flex overflow-hidden border border-neutral-700">
+                                    <div id="bar-sandwich-ratio"
+                                        class="bg-white h-full transition-all duration-500 shadow-[0_0_10px_rgba(255,255,255,0.8)]"
+                                        style="width: 46%"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <p
+                                    class="text-[10px] text-neutral-500 uppercase tracking-widest mb-1 flex justify-between">
+                                    <span>Remaining Surplus / Deficit</span>
+                                </p>
+                                <p class="text-3xl font-bold text-white tracking-tighter font-mono"
+                                    id="sandwich-surplus">MYR 3,000</p>
+                            </div>
+
+                            <!-- Warning Trigger -->
+                            <div id="sandwich-warning-container"
+                                class="opacity-0 transition-opacity duration-500 bg-black border border-neutral-850 p-4 rounded min-h-[90px] flex flex-col justify-center">
+                                <p class="text-xs text-white font-bold text-center tracking-wide uppercase leading-relaxed mb-1"
+                                    id="sandwich-warning-title">
+                                    <i class="fas fa-circle-exclamation mr-2 animate-pulse"></i> Critical Strain
+                                </p>
+                                <p class="text-[10px] text-neutral-400 text-center leading-relaxed"
+                                    id="sandwich-warning-desc">
+                                    Dependency exceeds safety threshold.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Chart Output -->
+                        <div class="flex flex-col justify-center lg:col-span-4">
+                            <div class="relative h-64 w-full">
+                                <canvas id="sandwichChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 2: Corporate Continuity Suite ================= -->
+        <section id="tab2" class="tab-content hidden fade-in">
+
+            <!-- MASTER VIEW -->
+            <div id="tab2-master" class="fade-in">
+                <div class="mb-10">
+                    <h1 class="text-4xl font-bold text-white tracking-tight mb-3">Business Planning</h1>
+                    <p class="text-neutral-400 font-light text-lg">Institutional-grade risk assessment and structural
+                        defense.</p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4">
+                    <!-- Master Item 1 -->
+                    <div onclick="openDetail('tab2', 'tab2-detail-keyperson')"
+                        class="group bg-neutral-900 border border-neutral-800 p-6 flex items-center justify-between cursor-pointer glow-hover transition-all rounded-lg">
+                        <div class="flex items-center">
+                            <div
+                                class="w-12 h-12 rounded border border-neutral-700 flex items-center justify-center mr-5 group-hover:bg-white group-hover:text-black transition-colors">
+                                <i class="fas fa-bolt text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-xl font-semibold text-white mb-1">Key-Person Risk & Probate Modeler</h2>
+                                <p class="text-sm text-neutral-400 font-light">Determine liquidity deficits and
+                                    operational runway during founder incapacitation.</p>
+                            </div>
+                        </div>
+                        <i
+                            class="fas fa-arrow-right text-neutral-600 group-hover:text-white transition-colors group-hover:translate-x-1 transform duration-300"></i>
+                    </div>
+
+                    <!-- Master Item 2 -->
+                    <div onclick="openDetail('tab2', 'tab2-detail-decay')"
+                        class="group bg-neutral-900 border border-neutral-800 p-6 flex items-center justify-between cursor-pointer glow-hover transition-all rounded-lg">
+                        <div class="flex items-center">
+                            <div
+                                class="w-12 h-12 rounded border border-neutral-700 flex items-center justify-center mr-5 group-hover:bg-white group-hover:text-black transition-colors">
+                                <i class="fas fa-seedling text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-xl font-semibold text-white mb-1">Generational Wealth Decay Simulator
+                                </h2>
+                                <p class="text-sm text-neutral-400 font-light">Visualize structural capital leakage
+                                    across Generation 1, 2, and 3.</p>
+                            </div>
+                        </div>
+                        <i
+                            class="fas fa-arrow-right text-neutral-600 group-hover:text-white transition-colors group-hover:translate-x-1 transform duration-300"></i>
+                    </div>
+
+                    <!-- Master Item 3 -->
+                    <div onclick="openDetail('tab2', 'tab2-detail-jurisdiction')"
+                        class="group bg-neutral-900 border border-neutral-800 p-6 flex items-center justify-between cursor-pointer glow-hover transition-all rounded-lg">
+                        <div class="flex items-center">
+                            <div
+                                class="w-12 h-12 rounded border border-neutral-700 flex items-center justify-center mr-5 group-hover:bg-white group-hover:text-black transition-colors">
+                                <i class="fas fa-scale-balanced text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-xl font-semibold text-white mb-1">Trust Jurisdiction Simulator (Onshore
+                                    vs Offshore)</h2>
+                                <p class="text-sm text-neutral-400 font-light">Compare asset ring-fencing, probate
+                                    speed, and tax optimization profiles of onshore West Malaysia and offshore Labuan.
+                                </p>
+                            </div>
+                        </div>
+                        <i
+                            class="fas fa-arrow-right text-neutral-600 group-hover:text-white transition-colors group-hover:translate-x-1 transform duration-300"></i>
+                    </div>
+
+                    <!-- Master Item 4 -->
+                    <div onclick="openDetail('tab2', 'tab2-detail-altassets')"
+                        class="group bg-neutral-900 border border-neutral-800 p-6 flex items-center justify-between cursor-pointer glow-hover transition-all rounded-lg">
+                        <div class="flex items-center">
+                            <div
+                                class="w-12 h-12 rounded border border-neutral-700 flex items-center justify-center mr-5 group-hover:bg-white group-hover:text-black transition-colors">
+                                <i class="fa-brands fa-bitcoin text-lg"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-xl font-semibold text-white mb-1">Alternative Asset Legacy Planner</h2>
+                                <p class="text-sm text-neutral-400 font-light">Identify exposure risks in US Equities,
+                                    offshore brokerages, and cryptocurrency cold storage inheritance paths.</p>
+                            </div>
+                        </div>
+                        <i
+                            class="fas fa-arrow-right text-neutral-600 group-hover:text-white transition-colors group-hover:translate-x-1 transform duration-300"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DETAIL VIEW 1: KEY PERSON -->
+            <div id="tab2-detail-keyperson" class="tab2-detail hidden fade-in">
+                <button onclick="closeDetail('tab2')"
+                    class="text-sm text-neutral-400 hover:text-white mb-8 flex items-center transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Menu
+                </button>
+
+                <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Probate Risk & Liquidity</h2>
+
+                <div class="bg-neutral-900 border border-neutral-800 rounded-lg p-6 lg:p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                        <div class="space-y-6 lg:col-span-4">
+                            <div>
+                                <label class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Liquid
+                                    Cash Reserves (MYR)</label>
+                                <input type="number" id="kp-reserves" value="1500000"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-all font-mono">
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Key-Person
+                                    Life Insurance (MYR)</label>
+                                <input type="number" id="kp-insurance" value="0"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-all font-mono">
+                            </div>
+                            <div>
+                                <label class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Monthly
+                                    Burn Rate (MYR)</label>
+                                <input type="number" id="kp-burn" value="250000"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all font-mono">
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[10px] mb-2 uppercase tracking-widest">
+                                    <label class="text-neutral-400">Est. Probate Delay</label>
+                                    <span id="kp-delay-val" class="text-white font-bold">12 Months</span>
+                                </div>
+                                <input type="range" id="kp-delay" min="3" max="36" value="12">
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-neutral-800 pt-6 lg:pt-0 lg:pl-8 lg:col-span-4">
+                            <div class="mb-6 border-b border-neutral-800 pb-6">
+                                <p class="text-[10px] text-neutral-500 uppercase tracking-widest mb-1">Survival Runway
+                                </p>
+                                <div class="flex items-baseline">
+                                    <span class="text-4xl font-bold text-white tracking-tighter font-mono"
+                                        id="kp-runway">6</span>
+                                    <span class="text-neutral-400 ml-2">Months</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <p class="text-[10px] text-neutral-500 uppercase tracking-widest mb-1">Total Cash
+                                    Shortfall</p>
+                                <div class="text-3xl font-bold tracking-tighter font-mono" id="kp-shortfall">MYR 0</div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs mb-2">
+                                    <span class="text-neutral-400 uppercase tracking-widest text-[10px]">Probate
+                                        Timeline</span>
+                                    <span id="kp-status-text"
+                                        class="font-bold text-white tracking-widest text-[10px] uppercase">Deficit</span>
+                                </div>
+                                <div
+                                    class="w-full bg-neutral-800 rounded-full h-4 flex overflow-hidden border border-neutral-700">
+                                    <div id="bar-runway" class="bg-neutral-400 h-full transition-all duration-500"
+                                        style="width: 50%"></div>
+                                    <div id="bar-deficit"
+                                        class="bg-white h-full shadow-[0_0_10px_rgba(255,255,255,0.8)] transition-all duration-500"
+                                        style="width: 50%"></div>
+                                </div>
+                                <p class="text-sm font-bold text-white mt-4 tracking-tight" id="kp-alert">6-Month
+                                    Liquidity Deficit Detected.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col justify-center lg:col-span-4">
+                            <div class="relative h-64 w-full">
+                                <canvas id="kpChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DETAIL VIEW 2: WEALTH DECAY -->
+            <div id="tab2-detail-decay" class="tab2-detail hidden fade-in">
+                <button onclick="closeDetail('tab2')"
+                    class="text-sm text-neutral-400 hover:text-white mb-8 flex items-center transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Menu
+                </button>
+
+                <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Generational Wealth Transfer</h2>
+
+                <div class="bg-neutral-900 border border-neutral-800 rounded-lg p-6 lg:p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                        <div class="space-y-6 lg:col-span-4">
+                            <div>
+                                <label class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">G1
+                                    Starting Capital (MYR)</label>
+                                <input type="number" id="decay-capital" value="20000000"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-all font-mono">
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Corporate
+                                    Trust Yield (% p.a.)</label>
+                                <input type="number" id="decay-yield" value="6" step="0.5"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-all font-mono">
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Generational
+                                    Spend Rate (% p.a.)</label>
+                                <input type="number" id="decay-spend" value="4" step="0.5"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-all font-mono">
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-neutral-800">
+                                <p class="text-[10px] text-neutral-500 font-light leading-relaxed">
+                                    Models a 25-year generational span. <br>
+                                    <span class="text-neutral-400 font-bold">Traditional Will</span> assumes a 20%
+                                    estate loss at each transfer and unmanaged yield.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="lg:col-span-8 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-neutral-800 pt-6 lg:pt-0 lg:pl-8">
+                            <div class="flex justify-end space-x-6 text-xs uppercase tracking-widest mb-4">
+                                <div class="flex items-center"><span class="w-3 h-0.5 bg-neutral-500 mr-2"></span><span
+                                        class="text-neutral-400">Traditional Will</span></div>
+                                <div class="flex items-center"><span
+                                        class="w-3 h-0.5 bg-white mr-2 shadow-[0_0_5px_rgba(255,255,255,0.8)]"></span><span
+                                        class="text-white">Corporate Trust</span></div>
+                            </div>
+                            <div class="relative w-full h-72">
+                                <canvas id="decayChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DETAIL VIEW 3: TRUST JURISDICTION SIMULATOR -->
+            <div id="tab2-detail-jurisdiction" class="tab2-detail hidden fade-in">
+                <button onclick="closeDetail('tab2')"
+                    class="text-sm text-neutral-400 hover:text-white mb-8 flex items-center transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Menu
+                </button>
+
+                <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Trust Jurisdiction Comparison</h2>
+
+                <div class="bg-neutral-900 border border-neutral-800 rounded-lg p-6 lg:p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+                        <!-- Inputs -->
+                        <div class="space-y-6 lg:col-span-4">
+                            <div>
+                                <label class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Total
+                                    Asset Value (MYR)</label>
+                                <input type="number" id="juris-assets" value="10000000"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-all font-mono">
+                            </div>
+                            <div>
+                                <label class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Annual
+                                    Investment Yield (%)</label>
+                                <input type="number" id="juris-yield" value="8"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] transition-all font-mono">
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[10px] mb-2 uppercase tracking-widest">
+                                    <label class="text-neutral-400">Time Horizon</label>
+                                    <span id="juris-years-val" class="text-white font-bold">20 Years</span>
+                                </div>
+                                <input type="range" id="juris-years" min="5" max="50" value="20">
+                            </div>
+                        </div>
+
+                        <!-- Metrics & Comparison -->
+                        <div
+                            class="flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-neutral-800 pt-6 lg:pt-0 lg:pl-8 lg:col-span-4">
+                            <div class="mb-6 border-b border-neutral-800 pb-6">
+                                <p class="text-[10px] text-neutral-500 uppercase tracking-widest mb-1">Offshore Tax
+                                    Savings</p>
+                                <div class="text-4xl font-bold text-white tracking-tighter font-mono shadow-[0_0_15px_rgba(255,255,255,0.4)]"
+                                    id="juris-savings">MYR 0</div>
+                                <p class="text-[10px] text-neutral-400 mt-2 font-light">Capital preserved by eliminating
+                                    onshore 24% blended tax drag.</p>
+                            </div>
+
+                            <div class="space-y-4">
+                                <!-- Quick Compare Labuan -->
+                                <div class="bg-black border border-neutral-700 rounded p-4">
+                                    <h4
+                                        class="text-xs font-bold uppercase tracking-wider text-white mb-2 flex items-center justify-between">
+                                        Labuan IBFC
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </h4>
+                                    <p class="text-[10px] text-neutral-400 font-light leading-relaxed">3% corporate tax.
+                                        Immediate statutory ring-fencing. Bypasses probate delays entirely.</p>
+                                </div>
+                                <!-- Quick Compare Onshore -->
+                                <div class="bg-black border border-neutral-850 rounded p-4 opacity-75">
+                                    <h4
+                                        class="text-xs font-bold uppercase tracking-wider text-neutral-500 mb-2 flex items-center justify-between">
+                                        West Malaysia
+                                        <i class="fas fa-xmark text-red-500"></i>
+                                    </h4>
+                                    <p class="text-[10px] text-neutral-500 font-light leading-relaxed">Up to 30% tax
+                                        brackets. No statutory protection from creditors. 6-24 month probate freezes.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chart Output -->
+                        <div class="flex flex-col justify-center lg:col-span-4">
+                            <div class="relative h-64 w-full">
+                                <canvas id="jurisChart"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- DETAIL VIEW 4: ALTERNATIVE ASSET LEGACY PLANNER -->
+            <div id="tab2-detail-altassets" class="tab2-detail hidden fade-in">
+                <button onclick="closeDetail('tab2')"
+                    class="text-sm text-neutral-400 hover:text-white mb-8 flex items-center transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Menu
+                </button>
+
+                <h2 class="text-3xl font-bold text-white mb-6 tracking-tight">Alternative Assets Portfolio</h2>
+
+                <div class="bg-neutral-900 border border-neutral-800 rounded-lg p-6 lg:p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+                        <!-- Inputs -->
+                        <div class="space-y-6 lg:col-span-4">
+                            <div>
+                                <label
+                                    class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Domestic
+                                    Assets (MYR) - Safe</label>
+                                <input type="number" id="alt-domestic" value="2000000"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all font-mono">
+                            </div>
+                            <div>
+                                <label class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">US
+                                    Equities (MYR) - 40% Tax Risk</label>
+                                <input type="number" id="alt-us" value="0"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all font-mono">
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Offshore
+                                    Brokerages (MYR) - Frozen Risk</label>
+                                <input type="number" id="alt-offshore" value="0"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all font-mono">
+                            </div>
+                            <div>
+                                <label class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Cold
+                                    Wallet Crypto (MYR) - Absolute Loss</label>
+                                <input type="number" id="alt-crypto" value="0"
+                                    class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all font-mono">
+                            </div>
+                        </div>
+
+                        <!-- Output -->
+                        <div
+                            class="flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-neutral-800 pt-6 lg:pt-0 lg:pl-8 lg:col-span-4">
+
+                            <div class="mb-6">
+                                <p
+                                    class="text-[10px] text-neutral-500 uppercase tracking-widest mb-1 flex justify-between">
+                                    <span>Total Portfolio Value</span>
+                                </p>
+                                <p class="text-3xl font-bold text-white tracking-tighter font-mono" id="alt-total">MYR
+                                    2,000,000</p>
+                            </div>
+
+                            <div class="mb-6">
+                                <p
+                                    class="text-[10px] text-neutral-500 uppercase tracking-widest mb-1 flex justify-between">
+                                    <span>Capital Frozen or Lost (MYR)</span>
+                                </p>
+                                <p class="text-2xl font-bold text-white tracking-tighter font-mono" id="alt-frozen">MYR
+                                    0</p>
+                            </div>
+
+                            <!-- Warning Trigger -->
+                            <div id="alt-warning-container"
+                                class="opacity-0 transition-opacity duration-500 bg-black border border-neutral-850 p-4 rounded min-h-[90px] flex flex-col justify-center pointer-events-none">
+                                <p class="text-xs text-white font-bold text-center tracking-wide uppercase leading-relaxed mb-1"
+                                    id="alt-warning-title">
+                                    <i class="fas fa-circle-exclamation mr-2 animate-pulse text-red-500"></i> US Estate
+                                    Tax Liability
+                                </p>
+                                <p class="text-lg text-red-500 font-bold font-mono text-center leading-relaxed drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]"
+                                    id="alt-warning-desc">
+                                    MYR 0
+                                </p>
+                                <p class="text-[10px] text-neutral-400 text-center mt-1">40% tax applied over ~MYR
+                                    280,000 threshold.</p>
+                            </div>
+
+                            <div class="mt-6">
+                                <button onclick="switchTab('tab4')"
+                                    class="w-full py-2 bg-white text-black font-bold text-xs uppercase tracking-wider rounded hover:bg-neutral-200 transition-all shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+                                    Secure Asset Audit
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Chart Output -->
+                        <div class="flex flex-col justify-center lg:col-span-4">
+                            <div class="relative h-64 w-full">
+                                <canvas id="altChart"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 3: Events & Knowledge Hub ================= -->
+        <section id="tab3" class="tab-content hidden fade-in">
+            <div class="mb-10">
+                <h1 class="text-4xl font-bold text-white tracking-tight mb-3">Events</h1>
+                <p class="text-neutral-400 font-light text-lg">Curated tactical briefings for high-net-worth
+                    individuals.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Event Card 1 -->
+                <div
+                    class="bg-neutral-900 border border-neutral-800 rounded-lg p-6 flex flex-col justify-between group hover:border-white transition-colors duration-300">
+                    <div>
+                        <div
+                            class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-3 flex justify-between">
+                            <span>Webinar</span>
+                            <span>Oct 12, 2026</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white leading-tight mb-3">Navigating Inflation & EPF
+                            Optimization</h3>
+                        <p class="text-sm text-neutral-400 font-light line-clamp-2 mb-6">A tactical masterclass for
+                            employees to restructure debts and maximize statutory compounding.</p>
+                    </div>
+                    <button
+                        class="w-full py-3 bg-black border border-neutral-700 hover:border-white text-white rounded font-medium text-sm transition-all shadow-[0_0_0_rgba(255,255,255,0)] hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                        Register Seat
+                    </button>
+                </div>
+
+                <!-- Event Card 2 -->
+                <div
+                    class="bg-neutral-900 border border-neutral-800 rounded-lg p-6 flex flex-col justify-between group hover:border-white transition-colors duration-300 relative overflow-hidden">
+                    <div
+                        class="absolute -right-4 -top-4 text-neutral-800 text-6xl group-hover:text-neutral-700 transition-colors">
+                        <i class="fas fa-chess-king"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div
+                            class="text-[10px] font-bold text-white uppercase tracking-widest mb-3 flex justify-between">
+                            <span class="flex items-center"><i
+                                    class="fas fa-lock mr-2 text-[8px]"></i>Closed-Door</span>
+                            <span>Invite Only</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white leading-tight mb-3">Corporate Governance & Succession
+                        </h3>
+                        <p class="text-sm text-neutral-400 font-light line-clamp-3 mb-6">Learn how to implement buy-sell
+                            agreements backed by corporate trusts to prevent equity leakage.</p>
+                    </div>
+                    <button onclick="switchTab('tab4')"
+                        class="relative z-10 w-full py-3 bg-white text-black font-bold rounded text-sm hover:bg-neutral-200 transition-all shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                        Request Invitation
+                    </button>
+                </div>
+
+                <!-- Event Card 3 -->
+                <div
+                    class="bg-neutral-900 border border-neutral-800 rounded-lg p-6 flex flex-col justify-between group hover:border-white transition-colors duration-300">
+                    <div>
+                        <div
+                            class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-3 flex justify-between">
+                            <span>In-Person • Singapore</span>
+                            <span>Nov 05, 2026</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white leading-tight mb-3">Private Trust Structuring
+                            Masterclass</h3>
+                        <p class="text-sm text-neutral-400 font-light line-clamp-2 mb-6">Deep dive into Labuan IBFC
+                            offshore structures and generational asset ring-fencing.</p>
+                    </div>
+                    <button
+                        class="w-full py-3 bg-black border border-neutral-700 hover:border-white text-white rounded font-medium text-sm transition-all shadow-[0_0_0_rgba(255,255,255,0)] hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                        Register Seat
+                    </button>
+                </div>
+
+                <!-- Event Card 4 -->
+                <div
+                    class="bg-neutral-900 border border-neutral-800 rounded-lg p-6 flex flex-col justify-between group hover:border-white transition-colors duration-300">
+                    <div>
+                        <div
+                            class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-3 flex justify-between">
+                            <span>Webinar</span>
+                            <span>Dec 10, 2026</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white leading-tight mb-3">Alternative Assets Symposium</h3>
+                        <p class="text-sm text-neutral-400 font-light line-clamp-2 mb-6">Analyzing the intersection of
+                            Real Estate, US Equities, and Cold Wallet Crypto legacy planning.</p>
+                    </div>
+                    <button
+                        class="w-full py-3 bg-black border border-neutral-700 hover:border-white text-white rounded font-medium text-sm transition-all shadow-[0_0_0_rgba(255,255,255,0)] hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                        Register Seat
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= TAB 5: User Profile ================= -->
+        <section id="tab5" class="tab-content hidden fade-in">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-10">
+                    <h1 class="text-4xl font-bold text-white tracking-tight mb-3">Profile</h1>
+                    <p class="text-neutral-400 font-light text-lg">Secure your profile to unlock bespoke advisory.</p>
+                </div>
+
+                <div id="profile-form-container"
+                    class="bg-neutral-900 border border-neutral-800 rounded-lg p-6 lg:p-10 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+                    <form id="profile-form" class="space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Basic Info -->
+                            <div class="space-y-6">
+                                <h3 class="text-lg font-bold text-white border-b border-neutral-800 pb-2 mb-4">Identity
+                                    Verification</h3>
+                                <div>
+                                    <label
+                                        class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Full
+                                        Legal Name</label>
+                                    <input type="text" required
+                                        class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all font-light">
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Passport
+                                        / National ID Number</label>
+                                    <input type="text" required
+                                        class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all font-mono tracking-widest">
+                                </div>
+                                <div>
+                                    <label class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Tax
+                                        Residency</label>
+                                    <select
+                                        class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all font-light appearance-none">
+                                        <option>Malaysia</option>
+                                        <option>Singapore</option>
+                                        <option>United Kingdom</option>
+                                        <option>Australia</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Financial Info -->
+                            <div class="space-y-6">
+                                <h3 class="text-lg font-bold text-white border-b border-neutral-800 pb-2 mb-4">Financial
+                                    Overview</h3>
+                                <div>
+                                    <label
+                                        class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Estimated
+                                        Net Worth</label>
+                                    <select
+                                        class="w-full bg-black border border-neutral-700 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all font-light appearance-none">
+                                        <option>MYR 2M - 5M</option>
+                                        <option>MYR 5M - 15M</option>
+                                        <option>MYR 15M - 50M</option>
+                                        <option>MYR 50M+</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2 mt-4">Primary
+                                        Advisory Focus</label>
+                                    <div class="space-y-3 mt-2">
+                                        <label class="flex items-center cursor-pointer group">
+                                            <input type="checkbox"
+                                                class="accent-white h-4 w-4 bg-black border-neutral-700 rounded focus:ring-0">
+                                            <span
+                                                class="ml-3 text-sm text-neutral-300 group-hover:text-white transition-colors">Corporate
+                                                Succession Planning</span>
+                                        </label>
+                                        <label class="flex items-center cursor-pointer group">
+                                            <input type="checkbox"
+                                                class="accent-white h-4 w-4 bg-black border-neutral-700 rounded focus:ring-0">
+                                            <span
+                                                class="ml-3 text-sm text-neutral-300 group-hover:text-white transition-colors">Cross-Border
+                                                Asset Protection</span>
+                                        </label>
+                                        <label class="flex items-center cursor-pointer group">
+                                            <input type="checkbox"
+                                                class="accent-white h-4 w-4 bg-black border-neutral-700 rounded focus:ring-0">
+                                            <span
+                                                class="ml-3 text-sm text-neutral-300 group-hover:text-white transition-colors">Wealth
+                                                Accumulation Strategy</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-6 border-t border-neutral-800">
+                            <button type="submit"
+                                class="w-full py-4 bg-white text-black font-bold text-sm uppercase tracking-widest rounded hover:bg-neutral-200 transition-all shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                                Save Secure Profile
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Success State -->
+                <div id="profile-success"
+                    class="hidden bg-black border border-neutral-800 rounded-lg p-10 text-center shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+                    <i
+                        class="fas fa-shield-check text-white text-5xl mb-6 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]"></i>
+                    <h2 class="text-2xl font-bold text-white mb-2">Profile Secured</h2>
+                    <p class="text-neutral-400 font-light mb-8 max-w-md mx-auto">Your identity and financial blueprint
+                        have been encrypted and saved to the Splendid advisory database.</p>
+                    <button onclick="document.getElementById('btn-tab4').click()"
+                        class="px-8 py-3 bg-white text-black font-bold text-sm uppercase tracking-widest rounded hover:bg-neutral-200 transition-all shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                        Proceed to Advisory
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 4: Secure Advisory Portal ================= -->
+        <section id="tab4" class="tab-content hidden fade-in">
+            <div class="max-w-2xl mx-auto">
+                <div class="text-center mb-10">
+                    <h1 class="text-4xl font-bold text-white tracking-tight mb-3">Contact Advisor</h1>
+                    <p class="text-neutral-400 font-light text-lg">Schedule a technical review with a Specialist.</p>
+                </div>
+
+                <div id="advisory-form-container"
+                    class="bg-neutral-900 border border-neutral-800 rounded-lg p-8 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+                    <form id="advisory-form" class="space-y-6">
+                        <div>
+                            <label class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Full
+                                Name</label>
+                            <input type="text" id="contact-name" required
+                                class="w-full bg-black border border-neutral-800 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Email
+                                Address</label>
+                            <input type="email" id="contact-email" required
+                                class="w-full bg-black border border-neutral-800 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-neutral-400 uppercase tracking-widest text-[10px] mb-2">Phone
+                                Number (WhatsApp)</label>
+                            <input type="tel" id="contact-phone" required
+                                class="w-full bg-black border border-neutral-800 rounded py-3 px-4 text-white focus:outline-none focus:border-white transition-all">
+                        </div>
+
+                        <button type="submit"
+                            class="w-full mt-6 bg-white hover:bg-neutral-200 text-black font-bold py-4 px-4 rounded transition-all flex justify-center items-center group shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]">
+                            Request Outreach <i class="fab fa-whatsapp ml-3 text-lg"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Validation Screen -->
+                <div id="advisory-success"
+                    class="hidden bg-neutral-900 border border-neutral-800 rounded-lg p-12 text-center fade-in shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+                    <div
+                        class="w-16 h-16 mx-auto border-2 border-white rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+                        <i class="fas fa-check text-2xl text-white"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-white mb-3 tracking-tight">Request Received</h2>
+                    <p class="text-neutral-400 font-light mb-8">A Splendid advisor will reach out to you via WhatsApp
+                        shortly to coordinate your consultation.</p>
+                    <div>
+                        <button onclick="resetForm()"
+                            class="text-xs uppercase tracking-widest text-neutral-500 hover:text-white transition-colors border-b border-transparent hover:border-white pb-1">Submit
+                            Another Request</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FAB -->
+    <button onclick="switchTab('tab4')"
+        class="fixed bottom-8 right-8 bg-white text-black rounded-full p-4 pr-6 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] flex items-center group transition-all z-40 hover:scale-105">
+        <i class="fas fa-comment-dots text-lg group-hover:animate-pulse"></i>
+        <span class="ml-3 font-bold text-sm tracking-tight hidden sm:inline">Contact Advisor</span>
+    </button>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // --- Global Config ---
+        Chart.defaults.color = '#737373';
+        Chart.defaults.font.family = 'Inter';
+        const fmtMyr = (num) => new Intl.NumberFormat('en-MY', { maximumFractionDigits: 0 }).format(num);
+        window.charts = {};
+
+        // --- Navigation Logic ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-white', 'text-black', 'shadow-[0_0_15px_rgba(255,255,255,0.2)]');
+                btn.classList.add('text-neutral-400');
+            });
+
+            document.getElementById(tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.remove('text-neutral-400');
+            activeBtn.classList.add('bg-white', 'text-black', 'shadow-[0_0_15px_rgba(255,255,255,0.2)]');
+
+            // Reset Details when switching tabs
+            if (tabId === 'tab1') closeDetail('tab1');
+            if (tabId === 'tab2') closeDetail('tab2');
+        }
+
+        // --- Master-Detail Flow Logic ---
+        function openDetail(tabPrefix, detailId) {
+            document.getElementById(tabPrefix + '-master').classList.add('hidden');
+            document.querySelectorAll('.' + tabPrefix + '-detail').forEach(el => el.classList.add('hidden'));
+            document.getElementById(detailId).classList.remove('hidden');
+
+            if (detailId === 'tab1-detail-epf') calcEPF();
+            if (detailId === 'tab1-detail-mortgage') calcMortgage();
+            if (detailId === 'tab1-detail-education') calcEducation();
+            if (detailId === 'tab1-detail-sandwich') calcSandwich();
+            if (detailId === 'tab2-detail-keyperson') calcKeyPerson();
+            if (detailId === 'tab2-detail-decay') calcDecay();
+            if (detailId === 'tab2-detail-jurisdiction') calcJurisdiction();
+            if (detailId === 'tab2-detail-altassets') calcAltAssets();
+        }
+
+        function closeDetail(tabPrefix) {
+            document.querySelectorAll('.' + tabPrefix + '-detail').forEach(el => el.classList.add('hidden'));
+            const master = document.getElementById(tabPrefix + '-master');
+            if (master) master.classList.remove('hidden');
+        }
+
+
+        // --- TAB 1: EPF Planner ---
+        function calcEPF() {
+            const ageEl = document.getElementById('epf-age');
+            const retireAgeEl = document.getElementById('epf-retire-age');
+            const balEl = document.getElementById('epf-balance');
+            const pmtEl = document.getElementById('epf-monthly');
+            const divEl = document.getElementById('epf-dividend');
+            const incEl = document.getElementById('epf-increment');
+            const infEl = document.getElementById('epf-inflation');
+
+            let age = parseInt(ageEl.value);
+            let retireAge = parseInt(retireAgeEl.value);
+
+            // Validation: Age cannot exceed retirement age
+            if (age >= retireAge) {
+                age = retireAge - 1;
+                ageEl.value = age;
+            }
+            document.getElementById('epf-age-val').innerText = age;
+            document.getElementById('epf-retire-age-val').innerText = retireAge;
+            document.getElementById('epf-age').max = retireAge - 1;
+            document.getElementById('epf-final-label').innerText = 'Projected Value at Age ' + retireAge;
+
+            let currentBal = parseFloat(balEl.value) || 0;
+            let currentPmt = parseFloat(pmtEl.value) || 0;
+            let divRate = (parseFloat(divEl.value) || 5.5) / 100;
+            let incRate = (parseFloat(incEl.value) || 3.0) / 100;
+            let inflation = infEl.checked ? 0.03 : 0;
+
+            let labels = [];
+            let principalData = [];
+            let dividendData = [];
+
+            let snapshots = [];
+            for (let i = age; i <= retireAge; i++) {
+                if (i % 5 === 0 || i === retireAge || i === age) {
+                    if (!snapshots.includes(i)) snapshots.push(i);
+                }
+            }
+
+            let bal = currentBal;
+            let totalPrincipal = currentBal;
+            let totalDivs = 0;
+            let pmt = currentPmt;
+
+            if (snapshots.includes(age)) {
+                labels.push(age);
+                principalData.push(totalPrincipal);
+                dividendData.push(totalDivs);
+            }
+
+            for (let y = age + 1; y <= retireAge; y++) {
+                let yearlyPrincipalAdded = 0;
+                let yearlyDivsAdded = 0;
+                let monthlyRate = divRate / 12;
+
+                for (let m = 0; m < 12; m++) {
+                    yearlyPrincipalAdded += pmt;
+                    let divEarned = (bal + yearlyPrincipalAdded + yearlyDivsAdded) * monthlyRate;
+                    yearlyDivsAdded += divEarned;
+                }
+
+                bal += yearlyPrincipalAdded + yearlyDivsAdded;
+                totalPrincipal += yearlyPrincipalAdded;
+                totalDivs += yearlyDivsAdded;
+
+                pmt = pmt * (1 + incRate);
+
+                if (snapshots.includes(y)) {
+                    let discount = inflation > 0 ? Math.pow(1 + inflation, y - age) : 1;
+                    labels.push(y);
+                    principalData.push(Math.round(totalPrincipal / discount));
+                    dividendData.push(Math.round(totalDivs / discount));
+                }
+            }
+
+            let finalValue = principalData[principalData.length - 1] + dividendData[dividendData.length - 1];
+            document.getElementById('epf-final-value').innerText = `MYR ${fmtMyr(finalValue)}`;
+            renderEpfChart(labels, principalData, dividendData);
+        }
+
+        ['epf-age', 'epf-retire-age', 'epf-balance', 'epf-monthly', 'epf-dividend', 'epf-increment'].forEach(id => {
+            document.getElementById(id).addEventListener('input', calcEPF);
+        });
+
+        function renderEpfChart(labels, principalData, dividendData) {
+            const ctx = document.getElementById('epfChart').getContext('2d');
+            if (window.charts.epf) window.charts.epf.destroy();
+
+            window.charts.epf = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels.map(l => 'Age ' + l),
+                    datasets: [
+                        {
+                            label: 'Total Contributions',
+                            data: principalData,
+                            backgroundColor: '#404040',
+                            barPercentage: 0.5
+                        },
+                        {
+                            label: 'Compounded Dividends',
+                            data: dividendData,
+                            backgroundColor: '#ffffff',
+                            borderRadius: { topLeft: 4, topRight: 4, bottomLeft: 0, bottomRight: 0 },
+                            barPercentage: 0.5
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            labels: { color: '#a3a3a3', usePointStyle: true, boxWidth: 8, font: { family: 'Inter', size: 10 } }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) label += ': ';
+                                    if (context.parsed.y !== null) {
+                                        label += 'MYR ' + context.parsed.y.toLocaleString();
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            stacked: true,
+                            beginAtZero: true,
+                            grid: { color: '#262626', drawBorder: false },
+                            ticks: { callback: v => (v / 1000000).toFixed(1) + 'M', color: '#a3a3a3' }
+                        },
+                        x: {
+                            stacked: true,
+                            grid: { display: false },
+                            ticks: { color: '#a3a3a3' }
+                        }
+                    }
+                }
+            });
+        }
+
+
+        // --- TAB 1: Mortgage Stress-Tester ---
+        function calcMortgage() {
+            const propertyVal = parseFloat(document.getElementById('mort-property').value) || 0;
+            const downEl = document.getElementById('mort-down');
+            const downPct = parseInt(downEl.value) || 0;
+
+            document.getElementById('mort-down-val').innerText = downPct + '%';
+
+            const p = propertyVal * (1 - (downPct / 100)); // Principal
+
+            const years = parseInt(document.getElementById('mort-years').value);
+            const rBase = parseFloat(document.getElementById('mort-rate-base').value) / 100 / 12 || 0;
+            const rStress = parseFloat(document.getElementById('mort-rate-stress').value) / 100 / 12 || 0;
+            const n = years * 12;
+
+            document.getElementById('mort-years-val').innerText = years + ' Years';
+
+            // Base Math
+            let pmtBase = p * (rBase * Math.pow(1 + rBase, n)) / (Math.pow(1 + rBase, n) - 1);
+            if (isNaN(pmtBase) || !isFinite(pmtBase)) pmtBase = 0;
+            let totalBaseInterest = (pmtBase * n) - p;
+
+            // Stressed Math
+            let pmtStress = p * (rStress * Math.pow(1 + rStress, n)) / (Math.pow(1 + rStress, n) - 1);
+            if (isNaN(pmtStress) || !isFinite(pmtStress)) pmtStress = 0;
+            let totalStressInterest = (pmtStress * n) - p;
+
+            let diffInterest = totalStressInterest - totalBaseInterest;
+            let diffPmt = pmtStress - pmtBase;
+
+            document.getElementById('mort-base-pmt').innerText = fmtMyr(pmtBase);
+            document.getElementById('mort-stress-pmt').innerText = fmtMyr(pmtStress);
+            document.getElementById('mort-diff-pmt').innerText = 'MYR ' + fmtMyr(diffPmt > 0 ? diffPmt : 0);
+            document.getElementById('mort-diff').innerText = 'MYR ' + fmtMyr(diffInterest > 0 ? diffInterest : 0);
+
+            renderMortgageChart(p, totalBaseInterest, totalStressInterest);
+        }
+
+        ['mort-property', 'mort-down', 'mort-years', 'mort-rate-base', 'mort-rate-stress'].forEach(id => {
+            document.getElementById(id).addEventListener('input', calcMortgage);
+        });
+
+        function renderMortgageChart(principal, baseInterest, stressInterest) {
+            const ctx = document.getElementById('mortgageChart').getContext('2d');
+            if (window.charts.mortgage) window.charts.mortgage.destroy();
+
+            window.charts.mortgage = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Baseline Scenario', 'Stressed Scenario'],
+                    datasets: [
+                        {
+                            label: 'Principal',
+                            data: [principal, principal],
+                            backgroundColor: '#404040',
+                            barPercentage: 0.6
+                        },
+                        {
+                            label: 'Total Interest Paid',
+                            data: [baseInterest, stressInterest],
+                            backgroundColor: ['#737373', '#ffffff'], // Whiter for stressed to highlight pain
+                            borderRadius: { topLeft: 4, topRight: 4, bottomLeft: 0, bottomRight: 0 },
+                            barPercentage: 0.6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            labels: { color: '#a3a3a3', usePointStyle: true, boxWidth: 8, font: { family: 'Inter', size: 10 } }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) label += ': ';
+                                    if (context.parsed.y !== null) {
+                                        label += 'MYR ' + context.parsed.y.toLocaleString();
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            stacked: true,
+                            beginAtZero: true,
+                            grid: { color: '#262626', drawBorder: false },
+                            ticks: { callback: v => (v / 1000000).toFixed(1) + 'M', color: '#a3a3a3' }
+                        },
+                        x: {
+                            stacked: true,
+                            grid: { display: false },
+                            ticks: { color: '#a3a3a3' }
+                        }
+                    }
+                }
+            });
+        }
+
+
+        // --- TAB 2: Key-Person Risk ---
+        function calcKeyPerson() {
+            const reserves = parseFloat(document.getElementById('kp-reserves').value) || 0;
+            const insurance = parseFloat(document.getElementById('kp-insurance').value) || 0;
+            const burn = parseFloat(document.getElementById('kp-burn').value) || 1; // avoid div 0
+            const delay = parseInt(document.getElementById('kp-delay').value);
+
+            const totalReserves = reserves + insurance;
+
+            document.getElementById('kp-delay-val').innerText = delay + ' Months';
+
+            let runway = Math.floor(totalReserves / burn);
+            document.getElementById('kp-runway').innerText = runway;
+
+            let barRunway = document.getElementById('bar-runway');
+            let barDeficit = document.getElementById('bar-deficit');
+            let alertText = document.getElementById('kp-alert');
+            let statusText = document.getElementById('kp-status-text');
+            let shortfallEl = document.getElementById('kp-shortfall');
+
+            let shortfall = (delay * burn) - totalReserves;
+
+            if (shortfall > 0) {
+                shortfallEl.innerText = '-MYR ' + fmtMyr(shortfall);
+                shortfallEl.className = "text-3xl font-bold text-white tracking-tighter font-mono shadow-[0_0_15px_rgba(255,255,255,0.4)]";
+            } else {
+                shortfallEl.innerText = 'MYR 0 (Covered)';
+                shortfallEl.className = "text-3xl font-bold text-neutral-500 tracking-tighter font-mono";
+            }
+
+            if (runway >= delay) {
+                barRunway.style.width = '100%';
+                barDeficit.style.width = '0%';
+                alertText.innerText = "Sufficient Liquidity Buffer.";
+                alertText.className = "text-sm font-bold text-neutral-400 mt-4 tracking-tight";
+                statusText.innerText = "COVERED";
+            } else {
+                let runwayPct = (runway / delay) * 100;
+                let deficitPct = 100 - runwayPct;
+                let deficitMonths = delay - runway;
+
+                barRunway.style.width = runwayPct + '%';
+                barDeficit.style.width = deficitPct + '%';
+
+                alertText.innerText = `${deficitMonths}-Month Liquidity Deficit Detected.`;
+                alertText.className = "text-sm font-bold text-white mt-4 tracking-tight";
+                statusText.innerText = "DEFICIT";
+            }
+
+            // Generate chart data
+            let labels = [];
+            let balances = [];
+
+            for (let m = 0; m <= delay; m++) {
+                labels.push('M' + m);
+                balances.push(totalReserves - (burn * m));
+            }
+
+            renderKpChart(labels, balances);
+        }
+
+        ['kp-reserves', 'kp-insurance', 'kp-burn', 'kp-delay'].forEach(id => {
+            document.getElementById(id).addEventListener('input', calcKeyPerson);
+        });
+
+        function renderKpChart(labels, balances) {
+            const ctx = document.getElementById('kpChart').getContext('2d');
+            if (window.charts.kp) window.charts.kp.destroy();
+
+            // Segment color based on value
+            const segmentColor = (ctx) => {
+                if (ctx.p1DataIndex === undefined) return '#ffffff';
+                // If the line drops below zero, make it stark white to highlight danger
+                return ctx.p1.parsed.y < 0 ? '#ffffff' : '#525252';
+            };
+
+            const segmentBorderDash = (ctx) => {
+                if (ctx.p1DataIndex === undefined) return [];
+                return ctx.p1.parsed.y < 0 ? [5, 5] : [];
+            };
+
+            window.charts.kp = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Remaining Liquidity',
+                        data: balances,
+                        segment: {
+                            borderColor: segmentColor,
+                            borderDash: segmentBorderDash
+                        },
+                        borderWidth: 3,
+                        fill: false,
+                        pointRadius: 2,
+                        pointBackgroundColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return 'Liquidity: MYR ' + context.parsed.y.toLocaleString();
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            grid: { color: '#262626', drawBorder: false },
+                            ticks: { callback: v => (v / 1000).toFixed(0) + 'k', color: '#a3a3a3' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#a3a3a3', maxTicksLimit: 8 }
+                        }
+                    }
+                }
+            });
+        }
+
+
+        // --- TAB 2: Wealth Decay Chart ---
+        function calcDecay() {
+            const cap = parseFloat(document.getElementById('decay-capital').value) || 0;
+            const yieldRate = parseFloat(document.getElementById('decay-yield').value) || 0;
+            const spendRate = parseFloat(document.getElementById('decay-spend').value) || 0;
+
+            const genYears = 25;
+            const estateFriction = 0.20; // 20% lost to probate/taxes in traditional will
+
+            // Trust Math
+            let trustNetRate = (yieldRate - spendRate) / 100;
+            let trustGen2 = cap * Math.pow((1 + trustNetRate), genYears);
+            let trustGen3 = trustGen2 * Math.pow((1 + trustNetRate), genYears);
+
+            // Traditional Math (Lower yield, 20% hit at transfer)
+            let tradYield = Math.max(0, yieldRate - 2); // Unmanaged returns typically lag 2%
+            let tradNetRate = (tradYield - spendRate) / 100;
+
+            let tradGen2Pre = cap * Math.pow((1 + tradNetRate), genYears);
+            let tradGen2 = Math.max(0, tradGen2Pre * (1 - estateFriction));
+
+            let tradGen3Pre = tradGen2 * Math.pow((1 + tradNetRate), genYears);
+            let tradGen3 = Math.max(0, tradGen3Pre * (1 - estateFriction));
+
+            const dataTrad = [cap, tradGen2, tradGen3];
+            const dataTrust = [cap, trustGen2, trustGen3];
+
+            const ctx = document.getElementById('decayChart').getContext('2d');
+            if (window.charts.decay) window.charts.decay.destroy();
+
+            window.charts.decay = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Gen 1 (Founder)', 'Gen 2 (Children)', 'Gen 3 (Grandchildren)'],
+                    datasets: [
+                        {
+                            label: 'Traditional Will',
+                            data: dataTrad,
+                            borderColor: '#737373', // neutral-500
+                            borderWidth: 2,
+                            tension: 0.3,
+                            pointBackgroundColor: '#737373'
+                        },
+                        {
+                            label: 'Corporate Trust',
+                            data: dataTrust,
+                            borderColor: '#ffffff', // white
+                            borderWidth: 3,
+                            borderDash: [5, 5],
+                            tension: 0.3,
+                            pointBackgroundColor: '#ffffff',
+                            pointRadius: 5,
+                            pointHoverRadius: 8,
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#fff',
+                            pointHoverBorderWidth: 2,
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: '#000',
+                            titleColor: '#fff',
+                            bodyColor: '#d4d4d8',
+                            borderColor: '#3f3f46',
+                            borderWidth: 1,
+                            callbacks: {
+                                label: function (context) {
+                                    return context.dataset.label + ': MYR ' + fmtMyr(context.parsed.y);
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#262626', drawBorder: false },
+                            ticks: { callback: v => (v / 1000000).toFixed(0) + 'M' }
+                        },
+                        x: { grid: { display: false } }
+                    },
+                    interaction: { mode: 'nearest', axis: 'x', intersect: false }
+                }
+            });
+        }
+        ['decay-capital', 'decay-yield', 'decay-spend'].forEach(id => {
+            document.getElementById(id).addEventListener('input', calcDecay);
+        });
+
+        // --- TAB 2: Trust Jurisdiction Simulator ---
+        function calcJurisdiction() {
+            const assets = parseFloat(document.getElementById('juris-assets').value) || 0;
+            const yieldRate = parseFloat(document.getElementById('juris-yield').value) || 0;
+            const years = parseInt(document.getElementById('juris-years').value);
+
+            document.getElementById('juris-years-val').innerText = years + ' Years';
+
+            // Onshore: 24% blended tax rate on yield
+            let onshoreNetYield = (yieldRate / 100) * (1 - 0.24);
+            let onshoreFV = assets * Math.pow((1 + onshoreNetYield), years);
+
+            // Offshore: 3% Labuan tax rate on yield
+            let offshoreNetYield = (yieldRate / 100) * (1 - 0.03);
+            let offshoreFV = assets * Math.pow((1 + offshoreNetYield), years);
+
+            let savings = offshoreFV - onshoreFV;
+
+            document.getElementById('juris-savings').innerText = 'MYR ' + fmtMyr(Math.max(0, savings));
+
+            renderJurisChart(onshoreFV, offshoreFV);
+        }
+
+        ['juris-assets', 'juris-yield', 'juris-years'].forEach(id => {
+            document.getElementById(id).addEventListener('input', calcJurisdiction);
+        });
+
+        function renderJurisChart(onshoreFV, offshoreFV) {
+            const ctx = document.getElementById('jurisChart').getContext('2d');
+            if (window.charts.jurisdiction) window.charts.jurisdiction.destroy();
+
+            window.charts.jurisdiction = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Onshore (West Malaysia)', 'Offshore (Labuan IBFC)'],
+                    datasets: [{
+                        data: [onshoreFV, offshoreFV],
+                        backgroundColor: ['#404040', '#ffffff'],
+                        borderColor: ['#262626', '#ffffff'],
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return 'Net Wealth: MYR ' + fmtMyr(context.parsed.y);
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            grid: { color: '#262626', drawBorder: false },
+                            ticks: { callback: v => (v / 1000000).toFixed(1) + 'M', color: '#a3a3a3' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#a3a3a3' }
+                        }
+                    }
+                }
+            });
+        }
+
+
+        // --- TAB 1: Education & Wealth Accumulator ---
+        // --- TAB 1: Education & Wealth Accumulator ---
+        function calcEducation() {
+            const goalEl = document.getElementById('edu-goal');
+            const seedEl = document.getElementById('edu-seed');
+            const yieldEl = document.getElementById('edu-yield');
+            const yearsEl = document.getElementById('edu-years');
+            const infEl = document.getElementById('edu-inflation');
+
+            const yearsValEl = document.getElementById('edu-years-val');
+            const outputEl = document.getElementById('edu-monthly-output');
+            const trueGoalEl = document.getElementById('edu-true-goal');
+            const yieldTextEl = document.getElementById('edu-yield-text');
+
+            let baseGoal = parseFloat(goalEl.value) || 0;
+            let seed = parseFloat(seedEl.value) || 0;
+            let yieldPct = parseFloat(yieldEl.value) || 0;
+            let years = parseInt(yearsEl.value) || 1;
+            let adjustInf = infEl.checked;
+
+            yearsValEl.innerText = years + (years === 1 ? ' Year' : ' Years');
+            yieldTextEl.innerText = `(Assuming ${yieldPct.toFixed(1)}% annualized compounding yield)`;
+
+            // Education Inflation Rate (5%)
+            let trueGoal = baseGoal;
+            if (adjustInf) {
+                trueGoal = baseGoal * Math.pow(1.05, years);
+            }
+            trueGoalEl.innerText = `MYR ${fmtMyr(trueGoal)}`;
+
+            let r = yieldPct / 100;
+            let rm = r / 12;
+            let n = years * 12;
+
+            // Future value of seed capital
+            let fvSeed = seed * Math.pow(1 + rm, n);
+
+            // Remaining goal to hit
+            let shortfall = trueGoal - fvSeed;
+
+            let pmt = 0;
+            if (shortfall > 0 && r > 0) {
+                pmt = (shortfall * rm) / (Math.pow(1 + rm, n) - 1);
+            } else if (shortfall > 0 && r === 0) {
+                pmt = shortfall / n;
+            }
+
+            outputEl.innerText = `MYR ${fmtMyr(pmt > 0 ? pmt : 0)}`;
+
+            // Generate chart data
+            let labels = [];
+            let portfolioData = [];
+            let goalData = [];
+
+            let bal = seed;
+            for (let y = 0; y <= years; y++) {
+                if (y > 0) {
+                    for (let m = 0; m < 12; m++) {
+                        bal += (pmt > 0 ? pmt : 0);
+                        bal *= (1 + rm);
+                    }
+                }
+                labels.push('Yr ' + y);
+                portfolioData.push(Math.round(bal));
+                goalData.push(Math.round(trueGoal));
+            }
+
+            renderEduChart(labels, portfolioData, goalData);
+        }
+
+        ['edu-goal', 'edu-seed', 'edu-yield', 'edu-years'].forEach(id => {
+            document.getElementById(id).addEventListener('input', calcEducation);
+        });
+
+        function renderEduChart(labels, portfolioData, goalData) {
+            const ctx = document.getElementById('eduChart').getContext('2d');
+            if (window.charts.edu) window.charts.edu.destroy();
+
+            window.charts.edu = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Portfolio Value',
+                            data: portfolioData,
+                            borderColor: '#ffffff',
+                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0
+                        },
+                        {
+                            label: 'Target Goal',
+                            data: goalData,
+                            borderColor: '#525252',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            fill: false,
+                            pointRadius: 0
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return context.dataset.label + ': MYR ' + context.parsed.y.toLocaleString();
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#262626', drawBorder: false },
+                            ticks: { callback: v => (v / 1000).toFixed(0) + 'k', color: '#a3a3a3' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#a3a3a3', maxTicksLimit: 6 }
+                        }
+                    }
+                }
+            });
+        }
+
+
+        // --- TAB 1: Sandwich Generation Liability Gap ---
+        function calcSandwich() {
+            const incomeEl = document.getElementById('sandwich-income');
+            const elderlyEl = document.getElementById('sandwich-elderly');
+            const childEl = document.getElementById('sandwich-child');
+            const personalEl = document.getElementById('sandwich-personal');
+
+            const ratioValEl = document.getElementById('sandwich-ratio-val');
+            const ratioBarEl = document.getElementById('bar-sandwich-ratio');
+            const surplusEl = document.getElementById('sandwich-surplus');
+            const warningEl = document.getElementById('sandwich-warning-container');
+            const warnTitleEl = document.getElementById('sandwich-warning-title');
+            const warnDescEl = document.getElementById('sandwich-warning-desc');
+
+            let income = parseFloat(incomeEl.value) || 0;
+            let elderly = parseFloat(elderlyEl.value) || 0;
+            let child = parseFloat(childEl.value) || 0;
+            let personal = parseFloat(personalEl.value) || 0;
+
+            let dependencyExp = elderly + child;
+            let totalExp = dependencyExp + personal;
+            let surplus = income - totalExp;
+
+            let ratio = 0;
+            if (income > 0) {
+                ratio = (dependencyExp / income) * 100;
+            }
+
+            ratioValEl.innerText = Math.round(ratio) + '%';
+            ratioBarEl.style.width = Math.min(ratio, 100) + '%';
+
+            if (surplus < 0) {
+                surplusEl.innerText = '-MYR ' + fmtMyr(Math.abs(surplus));
+                surplusEl.className = "text-3xl font-bold text-red-400 tracking-tighter font-mono";
+            } else {
+                surplusEl.innerText = 'MYR ' + fmtMyr(surplus);
+                surplusEl.className = "text-3xl font-bold text-white tracking-tighter font-mono";
+            }
+
+            if (surplus < 0) {
+                warningEl.className = "opacity-100 transition-opacity duration-500 bg-black border border-red-500 p-4 rounded min-h-[90px] flex flex-col justify-center shadow-[0_0_15px_rgba(239,68,68,0.4)]";
+                warnTitleEl.innerHTML = '<i class="fas fa-circle-exclamation mr-2 animate-pulse"></i> Critical Deficit';
+                warnDescEl.innerText = "Cash outflow exceeds income. High risk of debt accumulation.";
+            } else if (ratio > 60) {
+                warningEl.className = "opacity-100 transition-opacity duration-500 bg-black border border-white p-4 rounded min-h-[90px] flex flex-col justify-center shadow-[0_0_15px_rgba(255,255,255,0.4)]";
+                warnTitleEl.innerHTML = '<i class="fas fa-circle-exclamation mr-2 animate-pulse"></i> High Dependency';
+                warnDescEl.innerText = "Dependency exceeds safety threshold of 60%. Limited capacity for wealth accumulation.";
+            } else {
+                warningEl.className = "opacity-0 transition-opacity duration-500 bg-black border border-neutral-850 p-4 rounded min-h-[90px] flex flex-col justify-center pointer-events-none";
+            }
+
+            renderSandwichChart(elderly, child, personal, surplus > 0 ? surplus : 0);
+        }
+
+        ['sandwich-income', 'sandwich-elderly', 'sandwich-child', 'sandwich-personal'].forEach(id => {
+            document.getElementById(id).addEventListener('input', calcSandwich);
+        });
+
+        function renderSandwichChart(elderly, child, personal, surplus) {
+            const ctx = document.getElementById('sandwichChart').getContext('2d');
+            if (window.charts.sandwich) window.charts.sandwich.destroy();
+
+            window.charts.sandwich = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Elderly Care', 'Childcare', 'Personal / Household', 'Remaining Surplus'],
+                    datasets: [{
+                        data: [elderly, child, personal, surplus],
+                        backgroundColor: ['#ffffff', '#a3a3a3', '#525252', '#171717'],
+                        borderWidth: 1,
+                        borderColor: '#262626'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: { color: '#a3a3a3', usePointStyle: true, boxWidth: 8, font: { family: 'Inter', size: 10 } }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return context.label + ': MYR ' + context.parsed.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+
+        // --- TAB 2: Alternative Asset Legacy Planner ---
+        function calcAltAssets() {
+            const domestic = parseFloat(document.getElementById('alt-domestic').value) || 0;
+            const us = parseFloat(document.getElementById('alt-us').value) || 0;
+            const offshore = parseFloat(document.getElementById('alt-offshore').value) || 0;
+            const crypto = parseFloat(document.getElementById('alt-crypto').value) || 0;
+
+            const total = domestic + us + offshore + crypto;
+            const frozen = offshore + crypto;
+
+            // 40% tax on US equities over 280,000 MYR threshold
+            const usTaxHit = Math.max(0, us - 280000) * 0.40;
+
+            document.getElementById('alt-total').innerText = 'MYR ' + fmtMyr(total);
+            document.getElementById('alt-frozen').innerText = 'MYR ' + fmtMyr(frozen);
+            document.getElementById('alt-warning-desc').innerText = '- MYR ' + fmtMyr(usTaxHit);
+
+            const warningContainer = document.getElementById('alt-warning-container');
+            if (usTaxHit > 0 || frozen > 0) {
+                warningContainer.classList.remove('opacity-0', 'pointer-events-none');
+                warningContainer.classList.add('opacity-100');
+            } else {
+                warningContainer.classList.add('opacity-0', 'pointer-events-none');
+                warningContainer.classList.remove('opacity-100');
+            }
+
+            renderAltChart(domestic, us, offshore, crypto);
+        }
+
+        ['alt-domestic', 'alt-us', 'alt-offshore', 'alt-crypto'].forEach(id => {
+            document.getElementById(id).addEventListener('input', calcAltAssets);
+        });
+
+        function renderAltChart(domestic, us, offshore, crypto) {
+            const ctx = document.getElementById('altChart').getContext('2d');
+            if (window.charts.altassets) window.charts.altassets.destroy();
+
+            window.charts.altassets = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Domestic (Safe)', 'US Equities (40% Tax Risk)', 'Offshore (Frozen Risk)', 'Crypto (Absolute Risk)'],
+                    datasets: [{
+                        data: [domestic, us, offshore, crypto],
+                        backgroundColor: ['#262626', '#ffffff', '#737373', '#a3a3a3'],
+                        borderColor: '#000000',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return context.label + ': MYR ' + fmtMyr(context.parsed);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+
+        // --- TAB 4: Contact Form Submit ---
+        document.getElementById('advisory-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Submitting...';
+
+            setTimeout(() => {
+                document.getElementById('advisory-form-container').classList.add('hidden');
+                document.getElementById('advisory-success').classList.remove('hidden');
+                btn.innerHTML = originalText;
+            }, 1200);
+        });
+
+        function resetForm() {
+            document.getElementById('advisory-form').reset();
+            document.getElementById('advisory-success').classList.add('hidden');
+            document.getElementById('advisory-form-container').classList.remove('hidden');
+        }
+
+        // --- TAB 5: Profile Form Submit ---
+        document.getElementById('profile-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Encrypting Profile...';
+
+            setTimeout(() => {
+                document.getElementById('profile-form-container').classList.add('hidden');
+                document.getElementById('profile-success').classList.remove('hidden');
+                btn.innerHTML = originalText;
+            }, 1200);
+        });
+
+    </script>
+</body>
+
+<!-- Optimized by Splendid Trustee Corp -->
+
+</html>
